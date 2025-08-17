@@ -58,6 +58,12 @@ Check out the Figma design for this project:
 🔗 ER Diagram: <a href="https://surl.li/ofhprh" target="_blank" style="text-decoration: none;">User Authentication & Access Control</a>
 
 
+<h2>🚀 Live Preview</h2>
+
+🔗 <a href="https://virtualcare360.netlify.app/" target="_blank">Click here to view VirtualCare 360 Live</a>  
+
+
+
 <h2>💻 Tech Stack</h2>
 
 -  Frontend: HTML, CSS, JavaScript, React
