@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>virtual360</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS50XU7zFy0KJLGlPTeF4m0Wxz2JHCr7y3Pg&s">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fas fa-hospital"></i>
+        <span>virtual360</span>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#" class="nav-link active" data-section="dashboard">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" data-section="patients">
+            <i class="fas fa-users"></i> Patients
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" data-section="appointments">
+            <i class="fas fa-calendar-alt"></i> Appointments
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" data-section="doctors">
+            <i class="fas fa-user-md"></i> Doctors
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="section active">
+      <div class="section-header">
+        <h1>Dashboard</h1>
+        <p>Welcome to Virtual360</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stat-info">
+            <h3 id="total-patients">0</h3>
+            <p>Total Patients</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="stat-info">
+            <h3 id="total-appointments">0</h3>
+            <p>Appointments Today</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-user-md"></i>
+          </div>
+          <div class="stat-info">
+            <h3 id="total-doctors">5</h3>
+            <p>Available Doctors</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-bed"></i>
+          </div>
+          <div class="stat-info">
+            <h3>24</h3>
+            <p>Available Beds</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="recent-activities">
+        <h2>Recent Activities</h2>
+        <div class="activity-list" id="recent-activities">
+          <!-- Activities will be populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Patients Section -->
+    <section id="patients" class="section">
+      <div class="section-header">
+        <h1>Patient Management</h1>
+        <button class="btn btn-primary" id="add-patient-btn">
+          <i class="fas fa-plus"></i> Add New Patient
+        </button>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" id="patient-search" placeholder="Search patients...">
+        <i class="fas fa-search"></i>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="patients-table">
+            <!-- Patient data will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Appointments Section -->
+    <section id="appointments" class="section">
+      <div class="section-header">
+        <h1>Appointment Management</h1>
+        <button class="btn btn-primary" id="add-appointment-btn">
+          <i class="fas fa-plus"></i> Schedule Appointment
+        </button>
+      </div>
+
+      <div class="appointment-filters">
+        <select id="appointment-filter">
+          <option value="all">All Appointments</option>
+          <option value="today">Today</option>
+          <option value="upcoming">Upcoming</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Patient</th>
+              <th>Doctor</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="appointments-table">
+            <!-- Appointment data will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section id="doctors" class="section">
+      <div class="section-header">
+        <h1>Doctor Management</h1>
+        <button class="btn btn-primary" id="add-doctor-btn">
+          <i class="fas fa-plus"></i> Add New Doctor
+        </button>
+      </div>
+
+      <div class="doctors-grid" id="doctors-grid">
+        <!-- Doctor cards will be populated by JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for Adding/Editing Patient -->
+  <div id="patient-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="patient-modal-title">Add New Patient</h2>
+        <span class="close" id="close-patient-modal">&times;</span>
+      </div>
+      <form id="patient-form">
+        <div class="form-group">
+          <label for="patient-name">Full Name</label>
+          <input type="text" id="patient-name" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="patient-age">Age</label>
+            <input type="number" id="patient-age" required>
+          </div>
+          <div class="form-group">
+            <label for="patient-gender">Gender</label>
+            <select id="patient-gender" required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="patient-phone">Phone Number</label>
+          <input type="tel" id="patient-phone" required>
+        </div>
+        <div class="form-group">
+          <label for="patient-email">Email</label>
+          <input type="email" id="patient-email" required>
+        </div>
+        <div class="form-group">
+          <label for="patient-address">Address</label>
+          <textarea id="patient-address" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="patient-medical-history">Medical History</label>
+          <textarea id="patient-medical-history" rows="3"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" id="cancel-patient">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Patient</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal for Adding/Editing Appointment -->
+  <div id="appointment-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="appointment-modal-title">Schedule Appointment</h2>
+        <span class="close" id="close-appointment-modal">&times;</span>
+      </div>
+      <form id="appointment-form">
+        <div class="form-group">
+          <label for="appointment-patient">Patient</label>
+          <select id="appointment-patient" required>
+            <option value="">Select Patient</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="appointment-doctor">Doctor</label>
+          <select id="appointment-doctor" required>
+            <option value="">Select Doctor</option>
+            <option value="Dr. Ravi">Dr. Ravi - Physiotherapy</option>
+            <option value="Dr. Puja">Dr. Puja - Physiotherapy</option>
+            <option value="Dr. Supriya">Dr. Supriya - Physiotherapy</option>
+            <option value="Dr. Laxmi">Dr. Laxmi - Orthopedics</option>
+            <option value="Dr. Kundan">Dr. Kundan - Fake Engineer</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="appointment-date">Date</label>
+            <input type="date" id="appointment-date" required>
+          </div>
+          <div class="form-group">
+            <label for="appointment-time">Time</label>
+            <input type="time" id="appointment-time" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="appointment-reason">Reason for Visit</label>
+          <textarea id="appointment-reason" rows="3"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" id="cancel-appointment">Cancel</button>
+          <button type="submit" class="btn btn-primary">Schedule Appointment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
